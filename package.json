@@ -1,0 +1,13 @@
+{
+  "name": "dpwh031",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter frontend start",
+    "build": "pnpm --filter frontend build",
+    "start": "pnpm --filter frontend start"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
