@@ -1,0 +1,211 @@
+/* GhostClear 3D Industrial Design System */
+
+/* Isometric 3D Perspective */
+.perspective-scene {
+  perspective: 1200px;
+  perspective-origin: 50% 40%;
+}
+
+.isometric-grid {
+  transform: rotateX(60deg) rotateZ(-45deg);
+  transform-style: preserve-3d;
+}
+
+/* 3D Container Box */
+.container-3d {
+  position: relative;
+  width: 48px;
+  height: 32px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.container-3d:hover {
+  transform: translateZ(8px);
+}
+
+.container-3d .face-top {
+  position: absolute;
+  width: 48px;
+  height: 24px;
+  transform: rotateX(90deg) translateZ(16px);
+  background: currentColor;
+  filter: brightness(1.3);
+}
+
+.container-3d .face-front {
+  position: absolute;
+  width: 48px;
+  height: 32px;
+  background: currentColor;
+  filter: brightness(0.9);
+}
+
+.container-3d .face-right {
+  position: absolute;
+  width: 24px;
+  height: 32px;
+  right: -12px;
+  transform: rotateY(90deg);
+  background: currentColor;
+  filter: brightness(0.6);
+}
+
+/* Radar Scanner */
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.radar-sweep {
+  animation: radar-sweep 4s linear infinite;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(59, 130, 246, 0.3) 30deg,
+    transparent 60deg
+  );
+  border-radius: 50%;
+}
+
+/* Data Pipeline Animation */
+@keyframes flow-data {
+  0% { stroke-dashoffset: 20; }
+  100% { stroke-dashoffset: 0; }
+}
+
+.data-flow-line {
+  stroke-dasharray: 8 4;
+  animation: flow-data 1s linear infinite;
+}
+
+/* Pulse Glow */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--gc-warning-glow); }
+  50% { box-shadow: 0 0 20px 4px var(--gc-warning-glow); }
+}
+
+.pulse-warning {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-blue {
+  0%, 100% { box-shadow: 0 0 0 0 var(--gc-glow); }
+  50% { box-shadow: 0 0 16px 4px var(--gc-glow); }
+}
+
+.pulse-blue {
+  animation: pulse-blue 2s ease-in-out infinite;
+}
+
+/* Status Indicator */
+@keyframes blink-status {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.status-blink {
+  animation: blink-status 1.5s ease-in-out infinite;
+}
+
+/* Document Fly Animation */
+@keyframes fly-doc {
+  0% { transform: translateX(0) translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateX(60px) translateY(-30px) scale(0.9); opacity: 0.8; }
+  100% { transform: translateX(120px) translateY(-60px) scale(0.7); opacity: 0; }
+}
+
+.doc-fly {
+  animation: fly-doc 3s ease-out infinite;
+}
+
+/* Counter Tick */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.count-animate {
+  animation: count-up 0.6s ease-out forwards;
+}
+
+/* Scan Line */
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scan-line {
+  animation: scan-line 3s linear infinite;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(59, 130, 246, 0.1),
+    rgba(59, 130, 246, 0.05),
+    transparent
+  );
+}
+
+/* Panel Borders */
+.panel-border {
+  border: 1px solid var(--gc-border);
+  background: var(--gc-surface);
+}
+
+.panel-border-highlight {
+  border: 1px solid var(--gc-border);
+  background: var(--gc-surface);
+  box-shadow: inset 0 1px 0 0 rgba(248, 250, 252, 0.05);
+}
+
+/* Grid Pattern Background */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(42, 52, 65, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 52, 65, 0.4) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Stagger Entry */
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.stagger-in {
+  opacity: 0;
+  animation: slide-in 0.4s ease-out forwards;
+}
+
+.stagger-in:nth-child(1) { animation-delay: 0.05s; }
+.stagger-in:nth-child(2) { animation-delay: 0.1s; }
+.stagger-in:nth-child(3) { animation-delay: 0.15s; }
+.stagger-in:nth-child(4) { animation-delay: 0.2s; }
+.stagger-in:nth-child(5) { animation-delay: 0.25s; }
+.stagger-in:nth-child(6) { animation-delay: 0.3s; }
+.stagger-in:nth-child(7) { animation-delay: 0.35s; }
+.stagger-in:nth-child(8) { animation-delay: 0.4s; }
+
+/* Nav active state */
+.nav-item-active {
+  background: var(--gc-elevated);
+  border-left: 2px solid var(--gc-blue);
+}
+
+/* Texture overlay */
+.texture-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  background-size: cover;
+  z-index: 0;
+}
+
+/* Dot Grid Pattern */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(42, 52, 65, 0.3) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
